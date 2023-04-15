@@ -3,7 +3,13 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Obstacle
+  - ObstacleBottom
+  - ObstacleTop
+  - ObstacleRight
+  - ObstacleLeft
+  - Bullet
   layers:
   - Default
   - TransparentFX
