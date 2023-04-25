@@ -10,6 +10,7 @@ TagManager:
   - ObstacleRight
   - ObstacleLeft
   - Bullet
+  - SpaceTrash
   layers:
   - Default
   - TransparentFX

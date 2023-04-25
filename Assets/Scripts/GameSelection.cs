@@ -5,21 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class GameSelection : MonoBehaviour
 {
-    public void PlayerVsIA()
+    public void difficultyLevel(int mode)
     {
-        PlayerPrefs.SetInt("GameMode", 0);
-        SceneManager.LoadScene("Game");
-    }
-
-    public void PlayerVsPlayer()
-    {
-        PlayerPrefs.SetInt("GameMode", 1);
-        SceneManager.LoadScene("Game");
-    }
-
-    public void ObstaclesMode()
-    {
-        PlayerPrefs.SetInt("GameMode", 2);
+        PlayerPrefs.SetInt("GameMode", mode);
         SceneManager.LoadScene("Game");
     }
 

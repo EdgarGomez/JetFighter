@@ -14,9 +14,13 @@ public class GameManager : MonoBehaviour
     public Image winnerShip;
     public Sprite player1Ship;
     public Sprite player2Ship;
+    public bool isGameOver = false;
+    public bool isPaused = false;
+    public int difficultyLevel = 0; // 0 = easy, 1 = normal, 2 = hard
 
     void Awake()
     {
+        if (PlayerPrefs.HasKey("GameMode")) difficultyLevel = PlayerPrefs.GetInt("GameMode");
         if (Instance == null)
         {
             Instance = this;
@@ -26,16 +30,16 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
     void Start()
     {
-        Debug.Log(PlayerPrefs.GetInt("GameMode"));
+        Debug.Log(difficultyLevel);
         winnerShip.sprite = player1Ship;
     }
 
     public void GameOver(bool isPlayer1Winner)
     {
-        Debug.Log(isPlayer1Winner);
-
+        isGameOver = true;
         if (!isPlayer1Winner)
         {
             gameOverText.text = "Player 1 wins!";

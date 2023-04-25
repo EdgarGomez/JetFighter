@@ -82,11 +82,6 @@ public class PlayerController : MonoBehaviour
 
             lastBulletTime = Time.time;
         }
-
-        /*GameObject bullet = Instantiate(bulletPrefab, bulletSpawnPoint.position, transform.rotation);
-        audioSource.PlayOneShot(shootSound);
-        Rigidbody2D bulletRb = bullet.GetComponent<Rigidbody2D>();
-        bulletRb.velocity = transform.up * bulletSpeed;*/
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -117,6 +112,11 @@ public class PlayerController : MonoBehaviour
         }
         else if (collision.gameObject.CompareTag("Bullet"))
         {
+            UpdateLifeBar(collision);
+        }
+        else if (collision.gameObject.CompareTag("SpaceTrash"))
+        {
+            Destroy(collision.gameObject);
             UpdateLifeBar(collision);
         }
     }

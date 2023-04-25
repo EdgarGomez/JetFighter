@@ -12,7 +12,7 @@ public class Bullets : MonoBehaviour
             collision.gameObject.CompareTag("ObstacleBottom") ||
             collision.gameObject.CompareTag("Player"))
         {
-            Destroy(gameObject); // Destroy the bullet when it collides with a specific object
+            Destroy(gameObject);
         }
     }
 }
