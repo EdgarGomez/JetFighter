@@ -13,7 +13,7 @@ public class EnemySpawner : MonoBehaviour
     {
         timer += Time.deltaTime;
 
-        if (timer >= spawnRate)
+        if (timer >= spawnRate && GameManager.Instance.difficultyLevel == 2)
         {
             timer = 0f;
             SpawnEnemy();
@@ -28,6 +28,5 @@ public class EnemySpawner : MonoBehaviour
         GameObject enemy = Instantiate(enemyPrefab, worldPosition, Quaternion.identity);
 
         enemy.transform.localScale = Vector3.zero;
-
     }
 }

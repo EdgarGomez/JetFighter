@@ -11,6 +11,7 @@ TagManager:
   - ObstacleLeft
   - Bullet
   - SpaceTrash
+  - Enemy
   layers:
   - Default
   - TransparentFX

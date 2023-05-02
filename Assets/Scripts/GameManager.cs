@@ -33,6 +33,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        if (PlayerPrefs.HasKey("GameMode")) difficultyLevel = PlayerPrefs.GetInt("GameMode");
         Debug.Log(difficultyLevel);
         winnerShip.sprite = player1Ship;
     }

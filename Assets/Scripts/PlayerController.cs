@@ -119,6 +119,11 @@ public class PlayerController : MonoBehaviour
             Destroy(collision.gameObject);
             UpdateLifeBar(collision);
         }
+        else if (collision.gameObject.CompareTag("Enemy"))
+        {
+            Destroy(collision.gameObject);
+            UpdateLifeBar(collision);
+        }
     }
 
     public void UpdateLifeBar(Collision2D collision)

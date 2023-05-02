@@ -69,4 +69,16 @@ public class EnemyController : MonoBehaviour
         Rigidbody2D bulletRb = bullet.GetComponent<Rigidbody2D>();
         bulletRb.velocity = transform.up * bulletSpeed;
     }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("ObstacleRight") ||
+        collision.gameObject.CompareTag("ObstacleLeft") ||
+        collision.gameObject.CompareTag("ObstacleTop") ||
+        collision.gameObject.CompareTag("ObstacleBottom") ||
+        collision.gameObject.CompareTag("Bullet"))
+        {
+            Destroy(gameObject);
+        }
+    }
 }
