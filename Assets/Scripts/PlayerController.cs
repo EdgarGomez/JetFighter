@@ -40,26 +40,30 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if (isPlayer1)
+        if (!GameManager.Instance.isGameOver)
         {
-            float horizontalInput = Input.GetAxisRaw("Horizontal");
-            float targetRotation = transform.eulerAngles.z - horizontalInput * turnSpeed * Time.deltaTime;
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, 0, targetRotation), turnSmoothness * Time.deltaTime);
 
-            if (Input.GetKeyDown(KeyCode.W))
+            if (isPlayer1)
             {
-                ShootBullet();
+                float horizontalInput = Input.GetAxisRaw("Horizontal");
+                float targetRotation = transform.eulerAngles.z - horizontalInput * turnSpeed * Time.deltaTime;
+                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, 0, targetRotation), turnSmoothness * Time.deltaTime);
+
+                if (Input.GetKeyDown(KeyCode.W))
+                {
+                    ShootBullet();
+                }
             }
-        }
-        else
-        {
-            float horizontalInput = Input.GetAxisRaw("Horizontal2");
-            float targetRotation = transform.eulerAngles.z - horizontalInput * turnSpeed * Time.deltaTime;
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, 0, targetRotation), turnSmoothness * Time.deltaTime);
-
-            if (Input.GetKeyDown(KeyCode.UpArrow))
+            else
             {
-                ShootBullet();
+                float horizontalInput = Input.GetAxisRaw("Horizontal2");
+                float targetRotation = transform.eulerAngles.z - horizontalInput * turnSpeed * Time.deltaTime;
+                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, 0, targetRotation), turnSmoothness * Time.deltaTime);
+
+                if (Input.GetKeyDown(KeyCode.UpArrow))
+                {
+                    ShootBullet();
+                }
             }
         }
 
@@ -67,7 +71,14 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        rb.velocity = transform.up * speed;
+        if (!GameManager.Instance.isGameOver)
+        {
+            rb.velocity = transform.up * speed;
+        }
+        else
+        {
+            rb.velocity = new Vector2(0, 0);
+        }
     }
 
     void ShootBullet()
@@ -148,6 +159,6 @@ public class PlayerController : MonoBehaviour
     public void SpawnCollisionEffect(Vector2 position)
     {
         GameObject effectInstance = Instantiate(collisionEffectPrefab, position, Quaternion.identity);
-        Destroy(effectInstance, 1f);
+        Destroy(effectInstance, 2f);
     }
 }

@@ -13,7 +13,7 @@ public class EnemySpawner : MonoBehaviour
     {
         timer += Time.deltaTime;
 
-        if (timer >= spawnRate && GameManager.Instance.difficultyLevel == 2)
+        if (timer >= spawnRate && GameManager.Instance.difficultyLevel == 2 && !GameManager.Instance.isGameOver)
         {
             timer = 0f;
             SpawnEnemy();

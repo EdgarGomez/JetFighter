@@ -16,7 +16,7 @@ public class RightSpawner : MonoBehaviour
     void Start()
     {
         spawnerCollider = GetComponent<BoxCollider2D>();
-        if (GameManager.Instance.difficultyLevel > 0) StartCoroutine(SpawnObjects());
+        if (GameManager.Instance.difficultyLevel > 0 && !GameManager.Instance.isGameOver) StartCoroutine(SpawnObjects());
     }
 
     IEnumerator SpawnObjects()

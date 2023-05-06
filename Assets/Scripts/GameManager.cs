@@ -17,6 +17,8 @@ public class GameManager : MonoBehaviour
     public bool isGameOver = false;
     public bool isPaused = false;
     public int difficultyLevel = 0; // 0 = easy, 1 = normal, 2 = hard
+    public string[] objectTags;
+
 
     void Awake()
     {
@@ -41,6 +43,7 @@ public class GameManager : MonoBehaviour
     public void GameOver(bool isPlayer1Winner)
     {
         isGameOver = true;
+        DestroyObjects();
         if (!isPlayer1Winner)
         {
             gameOverText.text = "Player 1 wins!";
@@ -53,6 +56,22 @@ public class GameManager : MonoBehaviour
         }
         endGameGrid.SetActive(true);
         gameOverPanel.SetActive(true);
+    }
+
+    public void DestroyObjects()
+    {
+        // Iterate through each tag in the objectTags array
+        foreach (string tag in objectTags)
+        {
+            // Find all game objects with the current tag
+            GameObject[] taggedObjects = GameObject.FindGameObjectsWithTag(tag);
+
+            // Iterate through the tagged objects and destroy them
+            foreach (GameObject obj in taggedObjects)
+            {
+                Destroy(obj);
+            }
+        }
     }
 
     public void RestartGame()
