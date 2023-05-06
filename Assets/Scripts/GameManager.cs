@@ -15,13 +15,17 @@ public class GameManager : MonoBehaviour
     public Sprite player1Ship;
     public Sprite player2Ship;
     public bool isGameOver = false;
-    public bool isPaused = false;
     public int difficultyLevel = 0; // 0 = easy, 1 = normal, 2 = hard
     public string[] objectTags;
+
+    private bool escPressed = false;
+    public bool isPaused = false;
+    public GameObject pausePanel;
 
 
     void Awake()
     {
+        Time.timeScale = isPaused ? 0 : 1;
         if (PlayerPrefs.HasKey("GameMode")) difficultyLevel = PlayerPrefs.GetInt("GameMode");
         if (Instance == null)
         {
@@ -38,6 +42,34 @@ public class GameManager : MonoBehaviour
         if (PlayerPrefs.HasKey("GameMode")) difficultyLevel = PlayerPrefs.GetInt("GameMode");
         Debug.Log(difficultyLevel);
         winnerShip.sprite = player1Ship;
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (!escPressed)
+            {
+                if (!isGameOver)
+                {
+                    isPaused = !isPaused;
+                    Time.timeScale = isPaused ? 0 : 1;
+                    pausePanel.SetActive(isPaused);
+                    escPressed = true;
+                }
+            }
+            else
+            {
+                escPressed = false;
+            }
+        }
+    }
+
+    public void PauseOn()
+    {
+        isPaused = !isPaused;
+        pausePanel.SetActive(isPaused);
+        Time.timeScale = isPaused ? 0 : 1;
     }
 
     public void GameOver(bool isPlayer1Winner)
