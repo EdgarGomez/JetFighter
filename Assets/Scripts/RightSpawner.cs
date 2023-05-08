@@ -31,7 +31,7 @@ public class RightSpawner : MonoBehaviour
             }
 
             float randomY = Random.Range(spawnerCollider.bounds.min.y, spawnerCollider.bounds.max.y);
-            Vector2 spawnPosition = new Vector2(transform.position.x, randomY);
+            Vector2 spawnPosition = new Vector2(transform.position.x - 0.1f, randomY);
 
             if (Mathf.Abs(spawnPosition.y - lastSpawnedObjectY) >= minDistanceBetweenObjects)
             {

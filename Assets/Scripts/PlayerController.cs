@@ -132,7 +132,6 @@ public class PlayerController : MonoBehaviour
         }
         else if (collision.gameObject.CompareTag("Enemy"))
         {
-            Destroy(collision.gameObject);
             UpdateLifeBar(collision);
         }
     }

@@ -18,6 +18,9 @@ public class EnemyController : MonoBehaviour
     private Vector2 moveDirection;
     private float shootTimer = 0f;
     public float bulletSpeed = 5f;
+    public GameObject collisionEffectPrefab;
+    private AudioSource audioSource;
+    public AudioClip collisionSound;
 
     Quaternion randomRotation = Quaternion.Euler(0f, 0f, 0f);
 
@@ -27,6 +30,7 @@ public class EnemyController : MonoBehaviour
     }
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         transform.localScale = new Vector3(minScale, minScale, 1f);
 
         moveDirection = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized;
@@ -47,9 +51,6 @@ public class EnemyController : MonoBehaviour
         if (isMoving)
         {
             transform.position += (Vector3)moveDirection * moveSpeed * Time.deltaTime;
-
-
-
 
             transform.rotation = Quaternion.Slerp(transform.rotation, randomRotation, rotationSpeed * Time.deltaTime);
 
@@ -76,9 +77,19 @@ public class EnemyController : MonoBehaviour
         collision.gameObject.CompareTag("ObstacleLeft") ||
         collision.gameObject.CompareTag("ObstacleTop") ||
         collision.gameObject.CompareTag("ObstacleBottom") ||
-        collision.gameObject.CompareTag("Bullet"))
+        collision.gameObject.CompareTag("Bullet") ||
+        collision.gameObject.CompareTag("Player"))
         {
-            Destroy(gameObject);
+            audioSource.PlayOneShot(collisionSound);
+            SpawnCollisionEffect(collision.contacts[0].point);
+            gameObject.GetComponent<SpriteRenderer>().enabled = false;
+            Destroy(gameObject, 0.5f);
         }
+    }
+
+    public void SpawnCollisionEffect(Vector2 position)
+    {
+        GameObject effectInstance = Instantiate(collisionEffectPrefab, position, Quaternion.identity);
+        Destroy(effectInstance, 2f);
     }
 }

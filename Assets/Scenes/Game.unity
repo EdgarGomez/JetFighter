@@ -262,7 +262,7 @@ MonoBehaviour:
   spawnInterval: 3
   minSpeed: 1
   maxSpeed: 2
-  minDistanceBetweenObjects: 3
+  minDistanceBetweenObjects: 2
 --- !u!61 &81034712
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -350,7 +350,7 @@ Transform:
   m_GameObject: {fileID: 81034710}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 5.74, y: -0.02, z: 0}
-  m_LocalScale: {x: 1, y: 10, z: 1}
+  m_LocalScale: {x: 0.1, y: 10, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -2008,7 +2008,7 @@ MonoBehaviour:
   spawnInterval: 2.5
   minSpeed: 1
   maxSpeed: 2
-  minDistanceBetweenObjects: 3
+  minDistanceBetweenObjects: 2
 --- !u!61 &1121895672
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2096,7 +2096,7 @@ Transform:
   m_GameObject: {fileID: 1121895670}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -5.75, y: -0.02, z: 0}
-  m_LocalScale: {x: 1, y: 10, z: 1}
+  m_LocalScale: {x: 0.1, y: 10, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
